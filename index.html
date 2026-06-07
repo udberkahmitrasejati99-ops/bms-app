@@ -6,16 +6,21 @@
     <title>BMS App</title>
     <link rel="manifest" href="manifest.json">
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; }
-        iframe { width: 100%; height: 100%; border: none; }
+        body { font-family: sans-serif; background: #f4f4f9; padding: 20px; }
+        .menu { display: flex; flex-direction: column; gap: 10px; }
+        .btn { padding: 15px; border-radius: 10px; border: none; background: #007bff; color: white; font-weight: bold; text-align: center; text-decoration: none; }
     </style>
 </head>
 <body>
-    <iframe src="https://script.google.com/macros/s/AKfycbwrfuzxw7bKtWK-Op440YAdUpmzfErr6edrMqleMsyrHjX__kiQTiG1QqeiOFeMUdNj/exec"></iframe>
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js').catch(console.error);
-        }
-    </script>
+    <h2 style="text-align:center;">Dashboard BMS</h2>
+    <div class="menu">
+        <a class="btn" href="portal.html">Portal Utama</a>
+        <a class="btn" href="delivery.html">Delivery BMS</a>
+        <a class="btn" href="pickup.html">Pickup BMS</a>
+        <a class="btn" href="pengeluaran.html">Pengeluaran BMS</a>
+        <a class="btn" href="etoll.html">Etoll & Kas BMS</a>
+        <a class="btn" href="biaya.html">Total Biaya Operasional</a>
+        <a class="btn" href="penjualan.html">Penjualan BMS</a>
+    </div>
 </body>
 </html>
