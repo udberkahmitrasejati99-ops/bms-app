@@ -3,31 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard BMS</title>
+    <title>BMS HUB</title>
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; font-family: sans-serif; }
-        #menu-container { position: fixed; top: 0; width: 100%; background: #333; display: flex; overflow-x: auto; z-index: 1000; }
-        .menu-btn { color: white; padding: 15px; cursor: pointer; white-space: nowrap; border: none; background: transparent; font-size: 14px; }
-        iframe { width: 100%; height: calc(100vh - 50px); border: none; margin-top: 50px; }
+        body { font-family: 'Segoe UI', sans-serif; background: #0b1120; color: #fff; padding: 20px; margin: 0; }
+        h2 { text-align: center; color: #f97316; }
+        .card { background: #1e293b; border-radius: 12px; padding: 15px; margin-bottom: 20px; border-left: 4px solid #f97316; }
+        .card h3 { margin: 0 0 10px 0; font-size: 18px; color: #e2e8f0; }
+        .btn { display: block; width: 100%; padding: 12px; margin-top: 10px; border-radius: 8px; border: none; background: #334155; color: white; text-align: center; text-decoration: none; font-weight: bold; }
+        .btn:hover { background: #475569; }
+        #frame-container { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; }
+        iframe { width: 100%; height: 100%; border: none; }
+        #close-btn { position: fixed; top: 10px; right: 10px; z-index: 1000; background: red; color: white; padding: 10px; border-radius: 5px; cursor: pointer; }
     </style>
 </head>
 <body>
 
-    <div id="menu-container">
-        <button class="menu-btn" onclick="loadUrl('https://script.google.com/macros/s/AKfycbzEyGZgklGEQrLFZG-FcFHsqchSoQS4RTG8N9qA0NO-iVCCF-QpoX3v_ay6DQTqcKBK/exec')">Portal</button>
-        <button class="menu-btn" onclick="loadUrl('https://script.google.com/macros/s/AKfycbwB5esfTC0xyKaGpAtaPev7Ym-YNghFnkFug-TrbGS6WYalDM9mULYUDwrlcFr_20onQQ/exec')">Delivery</button>
-        <button class="menu-btn" onclick="loadUrl('https://script.google.com/macros/s/AKfycbxnmcOSEeTUg_4pt4Ada5e_VQQAhaMw5IS8SYm_2-XreX4jCK2TajFQX4nLlKRpWUHijw/exec')">Pickup</button>
-        <button class="menu-btn" onclick="loadUrl('https://script.google.com/macros/s/AKfycbwiyezqYuEQG0xKttMRkx82QvuHGgTaIl_mHgfrKfBz-1zCMqH87tXRkcmp3jFaEExhnw/exec')">Pengeluaran</button>
-        </div>
+    <h2>BMS HUB</h2>
 
-    <iframe id="main-frame" src="https://script.google.com/macros/s/AKfycbwrfuzxw7bKtWK-Op440YAdUpmzfErr6edrMqleMsyrHjX__kiQTiG1QqeiOFeMUdNj/exec"></iframe>
+    <div class="card">
+        <h3>OPERASIONAL BMS</h3>
+        <a class="btn" href="#" onclick="openFrame('https://script.google.com/macros/s/AKfycbwB5esfTC0xyKaGpAtaPev7Ym-YNghFnkFug-TrbGS6WYalDM9mULYUDwrlcFr_20onQQ/exec')">DELIVERY BMS</a>
+        <a class="btn" href="#" onclick="openFrame('https://script.google.com/macros/s/AKfycbxnmcOSEeTUg_4pt4Ada5e_VQQAhaMw5IS8SYm_2-XreX4jCK2TajFQX4nLlKRpWUHijw/exec')">PICKUP BMS</a>
+    </div>
+
+    <div class="card">
+        <h3>PENJUALAN & PENGELUARAN</h3>
+        <a class="btn" href="#" onclick="openFrame('https://script.google.com/macros/s/AKfycbxnBMIrWlfaNwq8wJkIlP3WWGrdE50Qqz2l1ux5BZiDj5leQd36j37JlzqtWjjZiswy2A/exec')">DASHBOARD PENJUALAN</a>
+        <a class="btn" href="#" onclick="openFrame('https://script.google.com/macros/s/AKfycbwiyezqYuEQG0xKttMRkx82QvuHGgTaIl_mHgfrKfBz-1zCMqH87tXRkcmp3jFaEExhnw/exec')">DASHBOARD PENGELUARAN</a>
+    </div>
+
+    <div id="frame-container">
+        <div id="close-btn" onclick="closeFrame()">TUTUP</div>
+        <iframe id="main-frame"></iframe>
+    </div>
 
     <script>
-        function loadUrl(url) {
+        function openFrame(url) {
             document.getElementById('main-frame').src = url;
+            document.getElementById('frame-container').style.display = 'block';
         }
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js').catch(console.error);
+        function closeFrame() {
+            document.getElementById('frame-container').style.display = 'none';
+            document.getElementById('main-frame').src = '';
         }
     </script>
 </body>
