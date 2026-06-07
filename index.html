@@ -2,18 +2,33 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>BMS App</title>
-    <link rel="manifest" href="manifest.json">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard BMS</title>
     <style>
-        body { font-family: sans-serif; background: #f4f4f9; display: flex; flex-direction: column; height: 100vh; padding: 10px; }
-        .btn { padding: 20px; margin: 8px; border-radius: 15px; background: #007bff; color: white; text-align: center; text-decoration: none; font-weight: bold; font-size: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; font-family: sans-serif; }
+        #menu-container { position: fixed; top: 0; width: 100%; background: #333; display: flex; overflow-x: auto; z-index: 1000; }
+        .menu-btn { color: white; padding: 15px; cursor: pointer; white-space: nowrap; border: none; background: transparent; font-size: 14px; }
+        iframe { width: 100%; height: calc(100vh - 50px); border: none; margin-top: 50px; }
     </style>
 </head>
 <body>
-    <h2 style="text-align:center; color:#333;">Dashboard BMS</h2>
-    <a class="btn" href="https://script.google.com/macros/s/AKfycbzEyGZgklGEQrLFZG-FcFHsqchSoQS4RTG8N9qA0NO-iVCCF-QpoX3v_ay6DQTqcKBK/exec" target="_blank">Portal Utama</a>
-    <a class="btn" href="https://script.google.com/macros/s/AKfycbwB5esfTC0xyKaGpAtaPev7Ym-YNghFnkFug-TrbGS6WYalDM9mULYUDwrlcFr_20onQQ/exec" target="_blank">Delivery BMS</a>
-    <a class="btn" href="https://script.google.com/macros/s/AKfycbxnmcOSEeTUg_4pt4Ada5e_VQQAhaMw5IS8SYm_2-XreX4jCK2TajFQX4nLlKRpWUHijw/exec" target="_blank">Pickup BMS</a>
+
+    <div id="menu-container">
+        <button class="menu-btn" onclick="loadUrl('https://script.google.com/macros/s/AKfycbzEyGZgklGEQrLFZG-FcFHsqchSoQS4RTG8N9qA0NO-iVCCF-QpoX3v_ay6DQTqcKBK/exec')">Portal</button>
+        <button class="menu-btn" onclick="loadUrl('https://script.google.com/macros/s/AKfycbwB5esfTC0xyKaGpAtaPev7Ym-YNghFnkFug-TrbGS6WYalDM9mULYUDwrlcFr_20onQQ/exec')">Delivery</button>
+        <button class="menu-btn" onclick="loadUrl('https://script.google.com/macros/s/AKfycbxnmcOSEeTUg_4pt4Ada5e_VQQAhaMw5IS8SYm_2-XreX4jCK2TajFQX4nLlKRpWUHijw/exec')">Pickup</button>
+        <button class="menu-btn" onclick="loadUrl('https://script.google.com/macros/s/AKfycbwiyezqYuEQG0xKttMRkx82QvuHGgTaIl_mHgfrKfBz-1zCMqH87tXRkcmp3jFaEExhnw/exec')">Pengeluaran</button>
+        </div>
+
+    <iframe id="main-frame" src="https://script.google.com/macros/s/AKfycbwrfuzxw7bKtWK-Op440YAdUpmzfErr6edrMqleMsyrHjX__kiQTiG1QqeiOFeMUdNj/exec"></iframe>
+
+    <script>
+        function loadUrl(url) {
+            document.getElementById('main-frame').src = url;
+        }
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js').catch(console.error);
+        }
+    </script>
 </body>
 </html>
