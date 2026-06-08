@@ -1,9 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BMS HUB</title>
+    
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0b1120">
+    <link rel="apple-touch-icon" href="logo.png">
+
     <style>
         body { font-family: sans-serif; background: #0b1120; color: #fff; padding: 20px; margin: 0; }
         h2 { text-align: center; color: #f97316; margin-bottom: 25px; }
@@ -70,6 +75,15 @@
         function closeFrame() {
             document.getElementById('frame-container').style.display = 'none';
             document.getElementById('main-frame').src = '';
+        }
+
+        // INI BUAT NYALAIN MESIN PWA-NYA SAYANG
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js').then((reg) => {
+                    console.log('Service worker registered.', reg);
+                });
+            });
         }
     </script>
 </body>
